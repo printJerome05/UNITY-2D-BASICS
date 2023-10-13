@@ -8,12 +8,17 @@ public class PAUSE : MonoBehaviour
 	[SerializeField] private int Respawn;
 	[SerializeField] private int MainMenu;
 
+	// audio
+	[SerializeField] public AudioSource audio;
+
 	public GameObject gameobject;
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();    
         gameobject.SetActive(false);
         Time.timeScale = 1f;
+        audio.Play();
     }
 
     // Update is called once per frame
@@ -22,6 +27,7 @@ public class PAUSE : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             Mainmenu();
+            audio.Pause();
         }
     }
 
@@ -35,6 +41,7 @@ public class PAUSE : MonoBehaviour
     {
 		gameobject.SetActive(false);
         Time.timeScale = 1f;
+		audio.Play();
 	}
 
     public void Mainemnu()
