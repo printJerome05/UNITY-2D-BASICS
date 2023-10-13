@@ -8,14 +8,34 @@ public class RESPAWNGAMEOVER : MonoBehaviour
 {
     // this is and indication where scene you want to spawn 
     [SerializeField] private int Respawn;
-    // Start is called before the first frame update
-    
-    // need to put the collider to isTrigger
+
+	public GameObject gameobject;
+
+
+	// Start is called before the first frame update
+	private void Start()
+	{
+		gameobject.SetActive(false);
+		Debug.Log("Start Game");
+		Time.timeScale = 1f;
+	}
+
+	// need to put the collider to isTrigger
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(Respawn);
-        }
+			gameobject.SetActive(true);
+		
+			Time.timeScale = 0f;
+			Debug.Log("Dead");
+		}
 	}
+
+	public void Gameover()
+	{
+		SceneManager.LoadScene(Respawn);
+	}
+
+
 }
